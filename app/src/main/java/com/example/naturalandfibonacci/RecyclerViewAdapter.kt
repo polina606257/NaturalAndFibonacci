@@ -26,6 +26,7 @@ class RecyclerViewAdapter()
     val primeNumbersList = mutableListOf<Int>(1)
     var isInProcess: Boolean = false
 
+
     init {
         list.addAll(listOf(0.0, 1.0))
         var t1 = 0.0
