@@ -17,10 +17,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/naturalButton"
+            android:id="@+id/primeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/natural_number_btn" />
+            android:text="@string/prime_number_btn" />
 
         <Button
             android:id="@+id/fibonacchiButton"

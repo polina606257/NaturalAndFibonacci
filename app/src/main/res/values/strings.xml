@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">NaturalAndFibonacci</string>
-    <string name="natural_number_btn">Простые числа</string>
+    <string name="app_name">PrimeAndFibonacci</string>
+    <string name="prime_number_btn">Простые числа</string>
     <string name="fibonacci_number_btn">Числа Фибоначчи</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

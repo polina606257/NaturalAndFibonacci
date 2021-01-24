@@ -1,23 +1,33 @@
 package com.example.naturalandfibonacci
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ActivityViewModel::class.java)}
-    //val viewModel: ActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         numbersRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        numbersRecyclerView.adapter = RecyclerViewAdapter()
+        numbersRecyclerView.adapter = FibonacciRecyclerViewAdapter()
+        fibonacchiButton.setBackgroundColor(resources.getColor(R.color.purple_200))
 
-        fibonacchiButton.setOnClickListener { viewModel.generateFibonacciSequence() }
-        naturalButton.setOnClickListener { viewModel.generateNaturalSequence() }
+        primeButton.setOnClickListener {
+            it.setBackgroundColor(Color.parseColor("#FFBB86FC"))
+            fibonacchiButton.setBackgroundColor(Color.parseColor("#FF6200EE"))
+            numbersRecyclerView.adapter = PrimeRecyclerViewAdapter()
+        }
+        fibonacchiButton.setOnClickListener {
+            it.setBackgroundColor(Color.parseColor("#FFBB86FC"))
+            primeButton.setBackgroundColor(Color.parseColor("#FF6200EE"))
+            numbersRecyclerView.adapter = FibonacciRecyclerViewAdapter()
+
+        }
+
 
     }
 }
