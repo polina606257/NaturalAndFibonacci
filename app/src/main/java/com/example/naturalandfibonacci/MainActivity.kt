@@ -14,17 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         numbersRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        numbersRecyclerView.adapter = RecyclerViewAdapter()
 
         fibonacchiButton.setOnClickListener { viewModel.generateFibonacciSequence() }
         naturalButton.setOnClickListener { viewModel.generateNaturalSequence() }
-        viewModel.numbersLiveData.observe(this) { numbers ->
-            numbers?.let {
-                numbersRecyclerView.adapter = viewModel.numbersLiveData.value?.let { listNumbers ->
-                    RecyclerViewAdapter(
-                        listNumbers
-                    )
-                }
-            }
-        }
+
     }
 }
