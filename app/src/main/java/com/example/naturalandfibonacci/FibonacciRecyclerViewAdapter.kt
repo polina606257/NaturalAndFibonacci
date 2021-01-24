@@ -1,6 +1,5 @@
 package com.example.naturalandfibonacci
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,16 +19,7 @@ class FibonacciRecyclerViewAdapter()
 
     init {
         fibonacciNumberList.addAll(listOf(0.0, 1.0))
-        var t1 = 0.0
-        var t2 = 1.0
-
-        for (i in 2..20) {
-            val sum = t1 + t2
-            t1 = t2
-            t2 = sum
-            fibonacciNumberList.add(t2)
-        }
-        maxPos = 20
+        addFibonacciToList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FibonacciRecyclerViewHolder {
@@ -41,7 +31,7 @@ class FibonacciRecyclerViewAdapter()
 
     override fun onBindViewHolder(holderFibonacci: FibonacciRecyclerViewHolder, position: Int) {
             if (position > maxPos - 10) {
-                addFibonacciToList()
+                addFibonacciSync()
             }
             if (!isInProcess) {
                 val number = fibonacciNumberList[position]
@@ -49,16 +39,20 @@ class FibonacciRecyclerViewAdapter()
             }
         }
 
-    private fun addFibonacciToList() {
+    private fun addFibonacciSync() {
         isInProcess = true
         GlobalScope.launch(Dispatchers.Default) {
-            for (i in 0 until 20) {
-                val sum = fibonacciNumberList[fibonacciNumberList.size - 1].toDouble() + fibonacciNumberList[fibonacciNumberList.size - 2].toDouble()
-                fibonacciNumberList.add(sum)
-            }
-            maxPos += 20
+           addFibonacciToList()
             isInProcess = false
         }
+    }
+
+    private fun addFibonacciToList() {
+        for (i in 0 until 20) {
+            val sum = fibonacciNumberList[fibonacciNumberList.size - 1] + fibonacciNumberList[fibonacciNumberList.size - 2]
+            fibonacciNumberList.add(sum)
+        }
+        maxPos += 20
     }
 
 
@@ -66,7 +60,6 @@ class FibonacciRecyclerViewAdapter()
             RecyclerView.ViewHolder(inflater.inflate(R.layout.number_item, parent, false)) {
         var number: Double? = null
 
-        @SuppressLint("ResourceAsColor")
         fun bind(number: Double, position: Int) {
 
             if (position % 4 == 0 || (position - 3) % 4 == 0)
