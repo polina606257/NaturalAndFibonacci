@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.number_item.view.*
 
 
-class PrimeRecyclerViewAdapter()
-    : NumbersRecyclerViewAdapter() {
+class PrimeRecyclerViewAdapter: NumbersRecyclerViewAdapter() {
     init {
-        numbersList.addAll(listOf(2))
+        numbersList.addAll(listOf(2.0))
         addNumbersToList()
     }
 
@@ -19,7 +18,7 @@ class PrimeRecyclerViewAdapter()
         var counter = 0
         var currentNumber = numbersList.last() + 1
         while (counter < 20) {
-            if (isPrimeNumber(currentNumber)) {
+            if (isPrimeNumber(currentNumber.toInt())) {
                 numbersList.add(currentNumber)
                 counter++
             }
@@ -28,9 +27,9 @@ class PrimeRecyclerViewAdapter()
         maxPos += 20
     }
 
-    private fun isPrimeNumber(x: Long): Boolean {
+    private fun isPrimeNumber(x: Int): Boolean {
         for (i in 2..x / 2)
-            if (x % i == 0L)
+            if (x % i == 0)
                 return false
         return true
     }
