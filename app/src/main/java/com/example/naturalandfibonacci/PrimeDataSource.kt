@@ -2,9 +2,9 @@ package com.example.naturalandfibonacci
 
 import androidx.paging.PositionalDataSource
 
-class PrimeNumbersDataSource() :
-    PositionalDataSource<Double>() {
+class PrimeNumbersDataSource: PositionalDataSource<Double>() {
     private val primeNumbersList = mutableListOf(2.0)
+
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Double>) {
         callback.onResult(primeNumbersList, 0)
     }

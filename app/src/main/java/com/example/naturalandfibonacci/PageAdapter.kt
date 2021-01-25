@@ -18,21 +18,15 @@ class NumberDiffCallback : DiffUtil.ItemCallback<Double>() {
         return oldItem == newItem
     }
 }
-class PageAdapter : PagedListAdapter<Double, NumberViewHolder>(
-        NumberDiffCallback()
-) {
-    override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-    ): NumberViewHolder {
+
+class PageAdapter : PagedListAdapter<Double, NumberViewHolder>(NumberDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return NumberViewHolder(inflater, parent)
     }
 
-    override fun onBindViewHolder(
-        holder: NumberViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: NumberViewHolder, position: Int) {
         holder.bind(getItem(position)?:0.0, position)
     }
 }

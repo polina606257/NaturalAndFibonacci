@@ -1,6 +1,5 @@
 package com.example.naturalandfibonacci
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val config: PagedList.Config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setInitialLoadSizeHint(2)
-            .setPageSize(50)
+            .setPageSize(100)
             .build()
         val pagedList = PagedList.Builder(dataSource, config)
             .setNotifyExecutor {
